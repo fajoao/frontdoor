@@ -2,13 +2,13 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "fabiofd-rg" {
-  name     = "fabiofd-rg"
+resource "azurerm_resource_group" "fd-rg" {
+  name     = "fd-rg"
   location = "eastus2"
 }
 
-resource "azurerm_frontdoor" "fjsfd" {
-  name                  = "fjsfd"
+resource "azurerm_frontdoor" "fabiofd" {
+  name                  = "fabiofd"
   resource_group_name   = azurerm_resource_group.fabiofd-rg.name
 
   routing_rule {
@@ -32,7 +32,7 @@ resource "azurerm_frontdoor" "fjsfd" {
   }
 
   backend_pool {
-    name = "mlaBackend"
+    name = "mla"
     backend {
       host_header = "apimla.azurewebsites.net"
       address     = "apimla.azurewebsites.net"
@@ -44,7 +44,7 @@ resource "azurerm_frontdoor" "fjsfd" {
   }
 
   backend_pool {
-    name = "mlbBackend"
+    name = "mlb"
     backend {
       host_header = "apimlb.azurewebsites.net"
       address     = "apimlb.azurewebsites.net"
@@ -56,7 +56,7 @@ resource "azurerm_frontdoor" "fjsfd" {
   }
 
   backend_pool {
-    name = "mlcBackend"
+    name = "mlc"
     backend {
       host_header = "apimlc.azurewebsites.net"
       address     = "apimlc.azurewebsites.net"
@@ -68,7 +68,7 @@ resource "azurerm_frontdoor" "fjsfd" {
   }
 
   backend_pool {
-    name = "mlmBackend"
+    name = "mlm"
     backend {
       host_header = "apimlm.azurewebsites.net"
       address     = "apimlm.azurewebsites.net"
@@ -111,6 +111,6 @@ resource "azurerm_frontdoor" "fjsfd" {
 
   frontend_endpoint {
     name      = "FrontendEndpoint1"
-    host_name = "fjsfd.azurefd.net"
+    host_name = "fabiofd.azurefd.net"
   }
 }
