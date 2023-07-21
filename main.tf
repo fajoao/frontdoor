@@ -18,7 +18,7 @@ resource "azurerm_frontdoor" "fjsfd" {
     frontend_endpoints = ["FrontendEndpoint1"]
     forwarding_configuration {
       forwarding_protocol = "MatchRequest"
-      backend_pool_name   = "mlaBackend"
+      backend_pool_name   = "apis"
     }
   }
 
